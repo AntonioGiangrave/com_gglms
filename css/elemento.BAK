@@ -1,0 +1,458 @@
+/*/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+        */
+
+
+        .mejs-slides-player {
+          width: 100%;
+          margin: 0 auto;
+          height: 100%
+        }
+        .mejs-slides-player-video {
+          width: 100%;
+          height: 100%;
+          float: left;
+
+          -moz-border-radius:5px 5px 5px 5px;
+          box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+
+        }
+
+        .mejs-slides-player-video-full {
+          width: 100%;
+          height: auto;
+          float: left;
+
+          -moz-border-radius:5px 5px 5px 5px;
+          box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+
+        }
+
+
+
+
+
+        .mejs-slides-player-slides {
+   /* height: auto;
+    width: 100%;
+    position: relative;
+    float: right;
+
+    -moz-border-radius:5px 5px 5px 5px;
+    box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+    */
+
+  }   
+  .mejs-slides-player-slides img {
+/*    width: 100%;   
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;*/
+  }
+
+
+  .jumper{
+    /*background-color: #F5F5F5;*/
+    border-top: 1px solid #61625D;
+    cursor: pointer;
+    float: left;
+    /*margin: 2px 100px 2px 2px;*/
+    /*padding: 2px;*/ 
+    /*position: relative;*/
+    width: 98%;
+    padding-left: 5px;
+  }
+
+  .jumper:hover{
+    background-color: #8CC700 !important;
+  }
+
+  .jumper.disabled:hover {
+    background-color: red !important;
+  }
+
+  #gglms_container  .row{
+    margin: 0px !important;
+  }
+
+
+  .box_jumper{
+    float: left;
+
+    max-height: 300px;
+    max-width: 655px;
+    overflow-y: scroll;
+    position: relative;
+    width: 57%;
+
+
+    -moz-border-radius:5px 5px 5px 5px;
+    box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+
+
+
+  }
+  .pulsante{
+   float: left;
+top: 90px;
+position: absolute;
+z-index: 1001;
+ }
+
+
+ #pulsanti {
+  float: right;
+  margin-right: -46px;
+  overflow: hidden;
+  position: absolute;
+  top: 90px;
+  width: 43px;
+  z-index: 2000;
+}
+
+.sidepanelhide {
+  position: absolute !important;
+  width: 8px !important;
+}
+
+.container-videosidepanelshow{
+  margin-left:   350px;
+}
+
+.container-videosidepanelhide{
+  margin-left:   0px;
+}
+
+
+
+#sidepanel {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 70px;
+  width: 500px;
+}
+
+#gglmsheader{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 60px;
+  right: 0px;
+  background-color: #f2f2f2;
+  padding-top:  5px !important;
+
+}
+
+.slider{
+  /*margin-top: 26px !important;*/
+}
+
+
+#moduli{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  height: 150px;
+  right: 0px;
+
+}
+
+.breadcrumb li:not(:first-child):after {
+  content: none !important;
+}
+
+.allegato{
+
+  background-image: url("image/graffetta.png");
+  background-repeat: no-repeat;
+  overflow: auto;
+  padding-bottom: 5px;
+  padding-left: 33px;
+  padding-top: 5px;
+
+}
+
+.allegato a {
+  color: black;
+}
+
+
+#attestato 	img {
+  float: right;
+  margin: 0 100px;
+  width: 111px;
+}
+
+
+
+.container-video {
+  /*background-color: #BAC9Df;*/
+  top: 90px;
+  left: 0;
+  /*padding: 10px;*/
+  position: fixed;
+  right: 0;
+  bottom: 150px;
+  z-index: 1000;
+
+
+  height: calc(100% - 200px);
+  height: -moz-calc(100% - 200px);
+  height: -webkit-calc(100% - 200px);
+
+
+}
+
+#gglms_container {
+  position: fixed;
+  top:0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  
+  background-color: #BAC9D0;
+}
+
+
+
+
+.sidepanel {
+  background: none repeat scroll 0 0 #f2f2f2;
+  float: left;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 90px;
+  width: 350px;
+  /*overflow: scroll;*/
+}
+
+#panel_jumper {
+/* background: none repeat scroll 0 0 #FFD37A;
+ float: left;
+
+ left: -300px;
+ position: fixed;
+ width: 300px;
+ z-index: 1001;
+ top: 50px;
+ overflow: scroll;
+ overflow-x: hidden;
+ bottom: 0px;*/
+
+}
+.slider-arrow {
+ background: none repeat scroll 0 0 #FFD37A;
+ color: #000000;
+ float: left;
+ font: 400 12px Arial,Helvetica,sans-serif;
+ left: 0px;
+ padding: 5px;
+ position: fixed;
+ text-decoration: none;
+ width: 58px;
+ z-index: 1002;
+ top: 50px;
+ border-bottom-right-radius: 5px;
+}
+
+
+
+.
+
+
+.anteprima_jumper
+{
+  width: 65px;
+  float: left;
+  margin: 3px;
+}
+
+
+/*
+
+ROBA JUMPER 
+
+*/
+
+
+
+
+
+
+
+/*TUTTA LA PARTE DEL QUIZ*/
+
+
+
+.lightbox {
+  background-color: #3c6ca3;
+  color: #FFFFFF;
+  display: none;
+  height: auto;
+  left: 0;
+  opacity: 0.89;
+  padding: 15px 90px;
+  position: relative;
+  top: 0;
+  width: 80%;
+  z-index: 9999;
+}
+.ongo {
+  display: block;
+  left: auto !important;
+  top: auto !important;
+}
+.lightbox a {
+  border-bottom: 1px dashed #FFFFFF;
+  color: #FFFFFF;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.lightbox label {
+  display: block;
+  margin-top: 5px;
+}
+.lightbox .resume {
+  margin-top: 10px;
+}
+
+
+/*FINE PARTE QUIZ*/
+.btn {
+
+  width: auto;
+  left: 150px;
+  max-width: 200px;
+}
+
+.btn-success {
+  background-color: #5BB75B;
+  background-image: linear-gradient(to bottom, #62C462, #51A351);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-danger {
+  background-color: #DA4F49;
+  background-image: linear-gradient(to bottom, #EE5F5B, #BD362F);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+/*
+//////////////
+UPLOAD 
+/////////////
+*/
+
+
+
+.fileinput-button {
+  font-size: 30px;
+  overflow: hidden;
+  padding-top: 30px;
+  position: relative;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+
+
+
+.gf-menu-toggle{
+  display: none !important;
+}
+
+
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+
+
+
+/*Contenuti in Footer*/
+.boxContentFooter {
+  float: left;
+  width: 150px;
+}
+
+.boxContentFooter .boxtitle {
+  font-size: 10px;
+  line-height: 18px;
+  height: 38px;
+}
+
+
+.boxContentFooter .boximg {
+  height: 84px;
+  overflow: hidden;
+}
+
+
+
+
+
+#BtSchedaCaso{
+
+  display: block !important;
+}
+
+.popover.bottom .arrow::after{
+  left: 0px !important;
+}
+
+#patway {
+  background-color: #bac9d0;
+  color: #363880 !important;
+  border-bottom-style:  solid;
+  border-bottom-color: whitesmoke;
+}
+
+
+.breadcrumb > li + li::before {
+
+  color: #00387a !important;
+
+}
+
+
+.modal-body {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+
+.modal-dialog{
+  z-index: 1050 !important;
+  width: 70% !important;
+  height: 80%   !important;
+  /*overflow-y: auto;*/
+}

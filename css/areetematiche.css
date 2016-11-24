@@ -1,0 +1,38 @@
+.slider{
+    -moz-box-shadow:inset 0px 0px 10px #555;
+    -webkit-box-shadow:inset 0px 0px 10px #555;
+    /*        background: #868585;*/
+}
+.slider p{
+    border-top:1px solid #666;
+    /*border-bottom:1px solid gray;*/
+    padding:4px;
+    padding-left:10px;
+    margin:0;
+    min-height:16px;
+}
+
+.slider p:hover{
+    background: #000;
+}
+
+.slider p:hover.selected{
+    background: transparent;
+    color: white;
+}
+.slider p.selected{
+    color: white;
+}
+
+.slider p a{
+    color: #4D60D6;
+    display: block;
+    font-weight: bold;
+    min-height: 16px;
+    text-decoration: none;
+}
+
+.slider p.selected a{
+    color: #333;
+    font-weight:bold;
+}

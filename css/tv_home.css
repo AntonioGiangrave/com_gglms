@@ -1,0 +1,604 @@
+/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+
+body {
+    background-color: #ccc;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+article {
+    overflow: hidden;
+    width: 950px;
+    padding: 10px;
+    margin: 0px auto;
+    background-color: #fff;
+}
+#slide {
+    width: 450px;
+    height: 338px;
+    float: left;
+    position: relative;
+
+    margin-left: 30px;
+
+    border: 5px solid #61625D;
+    -moz-border-radius:5px 5px 5px 5px;
+
+}
+
+#abstract {
+    /*    background-color: #EBE9E9;*/
+    border: 1px solid #CCCDCE;
+    float: left;
+
+    padding: 10px;
+    position: relative;
+    width: 447px;
+
+
+
+
+    -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; 
+
+
+
+}
+
+#banner1 {
+
+    float: left;
+
+
+    position: relative;
+    max-width: 460px;
+
+    bottom: 0px;
+
+}
+
+#tv_contenitore{
+
+    float: left;
+
+    margin: auto;
+    min-width: 470px;
+    position: relative;
+    width: 70%;
+}
+
+#tv_contenitore div{
+    max-width:470px;
+}
+
+#listaUnita{
+    float: left;
+    margin: 0 30px 0 30px;
+/*    max-height: 562px;*/
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    width: 300px;
+}
+
+
+#pulsanti{
+    position: relative;
+    float: left;
+    width: 200px;
+    height: 600px;
+}
+
+#banner2 {
+    float: right;
+    width: 300px;
+
+    margin-left: 6px;
+    max-height: 562px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.item_banner2{
+    width:200px;
+    padding-bottom: 5px;
+
+}
+
+#main_content{
+    /*width: 688px;*/
+    width: 100%;
+    margin:auto;
+    min-width:688px;
+    overflow:hidden;
+}
+
+.menutop {
+    padding-top:10px!important;
+}
+
+#box_video{
+
+
+    margin: 0px auto;
+    background-color: #fff;
+
+    width: 700px;
+    height: 338px;
+    float: left;
+    position: relative;
+    border: 5px solid #61625D;
+    -moz-border-radius:5px 5px 5px 5px;
+
+    box-shadow: 0px 0px 80px     #FFFF99; -webkit-box-shadow: 0px 0px 80px #FFFF99; -moz-box-shadow: 0px 0px 80px #FFFF99;
+
+}
+
+footer{
+    float: left;
+    position: relative;
+}
+
+
+#tv_colonna_palinsesto{
+    width: 480px;
+    float: left;
+    position: relative;
+}
+
+
+#tv_palinsesto_vetrina{
+    background-color: white;
+    background-size: auto auto;
+    border: 1px solid silver;
+    display: block;
+    height: 121px;
+    padding: 66px;
+    width: 336px;
+
+    -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; 
+
+
+}
+
+#tv_titolo_vetrina{
+    position: relative;
+    float: left;
+    margin: 30px;
+    padding: 15px;
+    width: 250px;
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px black;
+
+}
+
+
+
+.tv_palinsesto_contenuto_titolo{
+
+    float: left;
+    position: relative;
+
+    padding-left: 4px;
+    cursor: pointer; 
+
+}
+
+.tv_palinsesto_contenuto_titolo:hover{
+
+    float: left;
+    position: relative;
+    color: black;
+    padding-left : 4px;
+    cursor: pointer; 
+}
+
+.tv_palinsesto_contenuti_img{
+    float: left;
+    position: relative;
+    height: 60px;
+    width: 100px;
+
+}
+
+
+
+
+
+.tv_categorie_lista{
+    float: left;
+    position: relative;
+    height: 20px;
+    width: 100%;
+    padding-left: 20px;
+
+    border-color: #61625D;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    margin-bottom: 4px;
+    cursor: pointer; 
+
+}
+
+.tv_categorie_lista:hover{
+    float: left;
+    position: relative;
+    height: 20px;
+    width: 100%;
+    padding-left: 20px;
+
+    border-color: #61625D;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+
+    background-color:  #ccc ;
+
+    margin-bottom: 4px;
+
+    box-shadow: 0px 0px 80px #FFFF99; -webkit-box-shadow: 0px 0px 80px #FFFF99; -moz-box-shadow: 0px 0px 80px #FFFF99;
+    color: black;
+    cursor: pointer; 
+}
+#blocchi_centrali{
+    float: left;
+    position: relative;
+    width: 230px;
+}
+.blocco_centrale{
+
+    float: left;
+    position: relative;
+
+    margin-bottom: 20px;
+    margin-left: 20px;
+
+    cursor: pointer; 
+
+}
+.blocco_centrale:hover{
+
+    float: left;
+    position: relative;
+
+    margin-bottom: 20px;
+    margin-left: 20px;
+
+
+    padding-left: 1px;
+    cursor: pointer; 
+
+
+
+
+}
+.blocco_destro{
+
+    float: left;
+    position: relative;
+
+    margin-top: 10px;
+    cursor: pointer; 
+
+}
+.blocco_destro:hover{
+
+    float: left;
+    position: relative;
+
+    margin-top: 10px;
+
+    border-color: #61625D;
+    border-bottom-style: dashed;
+    border-bottom-width: 2px;
+    border-top-style: dashed;
+    border-top-width: 2px;
+
+    box-shadow: 0px 0px 80px #FFFF99; -webkit-box-shadow: 0px 0px 80px #FFFF99; -moz-box-shadow: 0px 0px 80px #FFFF99;
+    cursor: pointer; 
+
+}
+
+#blocco_bottom_right{
+    float: right;
+    position: relative;
+    cursor: pointer; 
+}
+
+.tv_livello{
+    width: 14px;
+}
+
+.tv_livelloCEF_contenuto{
+    float: right;
+    position: relative;
+
+}
+
+.tv_livello_contenuto{
+    float: right;
+    position: relative;
+    clear:  right;
+}
+
+#play{
+    left: 150px;
+    position: absolute;
+    top: 44px;
+}
+
+
+/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+
+body {
+    background-color: #ccc;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+article {
+
+    overflow: hidden;
+    width: 950px;
+    padding: 10px;
+    margin: 0px auto;
+    background-color: #fff;
+}
+#slide {
+    width: 450px;
+    height: 338px;
+    float: left;
+    position: relative;
+
+    margin-left: 30px;
+
+    border: 5px solid #61625D;
+    -moz-border-radius:5px 5px 5px 5px;
+
+}
+
+#box_video{
+
+
+    margin: 0px auto;
+    background-color: #fff;
+
+    width: 450px;
+    height: 338px;
+    float: left;
+    position: relative;
+    border: 5px solid #61625D;
+    -moz-border-radius:5px 5px 5px 5px;
+
+}
+
+footer{
+    float: left;
+    position: relative;
+}
+
+
+.jumper{
+
+    position: relative;
+    float:left;
+    padding: 2px;
+    background-color: #ebe9e9;
+    width: 450px;
+    border: 1px solid #61625D;
+    margin: 2px;
+    margin-right: 100px;
+    -moz-border-radius:5px 5px 5px 5px;
+
+
+}
+
+.jumper:hover{
+    background-color: #f6b0b0;
+}
+
+
+#tv_colonna_palinsesto{
+    width: 480px;
+    float: left;
+    position: relative;
+}
+
+
+#tv_titolo_vetrina{
+    position: relative;
+    float: left;
+    margin: 30px;
+    padding: 15px;
+    width: 250px;
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px black;
+
+}
+
+
+.tv_palinsesto_contenuto{
+
+    border-color: grey;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    float: left;
+    margin: 2px 7px ;
+    pointer-events: relative;
+    width: 455px;
+}
+.tv_palinsesto_contenuto:hover{
+
+    box-shadow: 0px 0px 8px #000; -webkit-box-shadow: 0px 0px 8px #000; -moz-box-shadow: 0px 0px 8px #000;
+
+}
+
+.tv_palinsesto_contenuto_titolo{
+
+    float: left;
+    position: relative;
+
+    padding-left: 4px;
+    cursor: pointer; 
+
+}
+
+.tv_palinsesto_contenuto_titolo:hover{
+
+    float: left;
+    position: relative;
+    color: black;
+    padding-left : 4px;
+    cursor: pointer; 
+}
+
+
+#tv_contenitore{
+    width: 100%;
+
+}
+
+
+#tv_categorie{
+    float: left;
+    position: relative;
+    width: 300px;
+    
+}
+
+
+#tv_social{
+ float: left;
+margin: 34px;
+position: relative;
+width: 130px;
+margin-left: 80px;
+margin-top: 80px;
+}
+
+.tv_categorie_lista{
+    float: left;
+    position: relative;
+    height: 20px;
+    width: 90%;
+    padding-left: 20px;
+
+    border-color: #61625D;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    margin-bottom: 4px;
+    cursor: pointer; 
+
+}
+
+.tv_categorie_lista:hover{
+    float: left;
+    position: relative;
+    height: 20px;
+    width: 100%;
+    padding-left: 20px;
+
+    border-color: #61625D;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+
+    background-color:  #ccc ;
+
+    margin-bottom: 4px;
+
+    box-shadow: 0px 0px 80px #FFFF99; -webkit-box-shadow: 0px 0px 80px #FFFF99; -moz-box-shadow: 0px 0px 80px #FFFF99;
+    color: black;
+    cursor: pointer; 
+}
+#blocchi_centrali{
+    float: right;
+    margin-top: 2em;
+    position: relative;
+    width: 300px;
+}
+.blocco_centrale{
+
+    float: left;
+    position: relative;
+
+    margin-bottom: 20px;
+    margin-left: 20px;
+
+    cursor: pointer; 
+
+}
+.blocco_centrale:hover{
+
+    float: left;
+    position: relative;
+
+    margin-bottom: 20px;
+    margin-left: 20px;
+
+
+    padding-left: 1px;
+    cursor: pointer; 
+
+
+
+
+}
+
+
+#blocco_bottom_right{
+    float: right;
+    position: relative;
+    cursor: pointer; 
+}
+
+.tv_livello{
+    width: 14px;
+}
+
+.tv_livelloCEF_contenuto{
+    float: right;
+    position: relative;
+
+}
+
+.tv_livello_contenuto{
+    float: right;
+    position: relative;
+    clear:  right;
+}
+
+.ui-accordion .ui-accordion-content {
+    padding: 0.6em 0.6em;
+    border-top: 0;
+    overflow: auto;
+    font-size: 11px;
+}

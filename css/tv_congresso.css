@@ -1,0 +1,72 @@
+#contenuti_congresso {
+    float:left;
+    padding-left: 10px;
+}
+
+#contenuti_congresso div.tv_contenuto  {
+    display:block;
+    float:none;
+}
+
+#contenuti_congresso .content_thumb {
+    width: 80px;
+    height: 60px;
+}
+
+#contenuti_congresso .tv_contenuto_titolo {
+    float: none;
+}
+
+#contenuti_congresso .datapubblicazione {
+    float: right;
+    font-size: 9px;
+    left: 120px;
+    position: absolute;
+    top: 75px;
+}
+
+.abstract {
+float:none;
+}
+
+#box_pulsanti {
+    margin-top:20px;
+    width:50%;
+    text-align:left;
+    height:200px;
+}
+
+
+#lista_congressi {
+    width:800px;
+}
+
+#lista_congressi .lista_congressi_titolo {
+    font-size: 18px; 
+    color: #003366; 
+    font-weight:bold;
+    text-align: center;
+}
+
+#lista_congressi .congresso {
+    width: 380px; 
+    float: left; 
+    margin: 10px;
+}
+
+#lista_congressi .congresso .titolo_congresso {
+    font-size:  14px;  
+    color:  #003366;  
+    font-weight:bold;  
+    padding-left: 5px;
+}
+
+#lista_congressi .congresso img {
+    border: 2px 
+    solid #003366; 
+    margin: 0px 5px 10px; 
+    padding: 2px; 
+    vertical-align: middle;
+    height: 237px;
+    width:350px;
+}

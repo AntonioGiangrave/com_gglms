@@ -1,0 +1,79 @@
+/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+
+
+/*#box_coupon_field
+{
+    border-style: solid;
+    border-color: gray;
+    height: 50px;
+    width: 400px;
+    font-size:28px;
+    font-family:  serif;
+    padding: 5px;
+    background-color: #318BBC;
+
+
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius:5px 5px 5px 5px;
+
+
+    box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+
+}*/
+
+/*#box_coupon
+{
+    width: 100%;
+    padding:  15px;
+}
+
+
+#box_coupon_container{
+    height: 500px;
+    width: 100%;
+    color:  black;
+
+
+}
+
+
+#button_conferma_codice{
+    height: 50px;
+    width: 200px;
+    padding: 5px;
+    bottom:  12px;
+  #margin:  40px 0 0 40px;
+}
+*/
+
+#waiting_verifica_codice{
+
+    display: none;
+    float:left;
+    position: relative;
+    height: 50px;
+    width: 400px;
+
+}
+
+/*#report{
+
+    font-weight: 600;
+    height: 50px;
+    padding: 1px 18px;
+    width: 100%;
+}
+
+#imgcoupon{
+    float: right;
+    margin-right: 265px;
+
+}*/

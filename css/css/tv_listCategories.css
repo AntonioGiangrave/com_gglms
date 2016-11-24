@@ -1,0 +1,83 @@
+/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#listaCategoria{
+    width: 100%;
+    min-height: 200px;
+
+}
+
+.categoria{
+    width: 90px;
+    height: 90px;
+
+    padding : 5px;
+    float: left;
+    position: relative;
+
+    font-size: 10px;
+
+    /*  border: 1px dotted #e7e7e7;*/
+    cursor: pointer;  
+    
+    margin-left: 7px;
+}
+.categoria:hover{
+    width: 90px;
+    height: 90px;
+
+    padding : 5px;
+    float: left;
+    position: relative;
+
+    /*border: 1px dotted #e7e7e7;*/
+
+    box-shadow: 0px 0px 80px     #BA2B27; -webkit-box-shadow: 0px 0px 80px #BA2B27; -moz-box-shadow: 0px 0px 80px #BA2B27;
+    /*    color: black;*/
+    cursor: pointer;
+}
+
+.listaCategorie{
+    width: 500px;
+}
+
+.canale{
+    float: left;
+    position: relative;
+    clear: left;
+
+    padding-left: 15px;
+    margin-bottom:  15px;
+
+}
+.cult{
+    background-image: url('../images/cult.jpg');
+    background-repeat:repeat-y;
+}
+.edu{
+    background-image: url('../images/edu.jpg');
+    background-repeat:repeat-y;
+}
+.fun{
+    background-image: url('../images/fun.jpg');
+    background-repeat:repeat-y;
+}
+.plus{
+    background-image: url('../images/plus.jpg');
+    background-repeat:repeat-y;
+}
+
+
+.totcontenuti{
+   position: absolute;
+font-size: 10px;
+bottom: 0;
+right: 7px;
+color: black;
+font-weight: bold;
+}

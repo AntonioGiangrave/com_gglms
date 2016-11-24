@@ -1,0 +1,609 @@
+/*/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+        */
+
+
+        .mejs-slides-player {
+          width: 100%;
+          margin: 0 auto;
+          height: 100%
+        }
+        .mejs-slides-player-video {
+          width: 100%;
+          height: 100%;
+          float: left;
+
+          -moz-border-radius:5px 5px 5px 5px;
+          box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+
+        }
+
+        .mejs-slides-player-video-full {
+          width: 100%;
+          height: auto;
+          float: left;
+
+          -moz-border-radius:5px 5px 5px 5px;
+          box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+
+        }
+
+
+        /*IMPORTANTISSIMI PER REGOLARE L'ALTEZZA DEI RIQUADRI IN VISTA VIDEOSLIDE*/
+        .mejs-slides-player-slides img {
+          max-height: calc(100vh - 280px) !important;
+        }
+
+
+         .img-thumbnail{
+          max-height: calc(100vh - 330px) !important;
+          height: auto !important; 
+            height: calc(100vh - 275px) !important; 
+            height: -moz-calc(100vh - 275px) !important;
+            height: -webkit-calc(100vh - 275px) !important;
+    
+
+
+            min-height: 200px;
+
+
+        } 
+
+        #boxvideo video{
+          height: calc(100%);
+          height: -moz-calc(100%);
+          height: -webkit-calc(100%);
+
+        }  
+
+
+
+
+
+        .mejs-slides-player-slides img {
+/*    width: 100%;   
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;*/
+  }
+
+
+  .jumper{
+    /*background-color: #F5F5F5;*/
+    border-top: 1px solid #61625D;
+    cursor: pointer;
+    float: left;
+    /*margin: 2px 100px 2px 2px;*/
+    /*padding: 2px;*/ 
+    /*position: relative;*/
+    width: 98%;
+    padding-left: 5px;
+    color: #424242;
+  }
+
+  .jumper:hover{
+    background-color: #318BBC !important;
+  }
+
+  .jumper.disabled:hover {
+    background-color: red !important;
+  }
+
+  #gglms_container  .row{
+    margin: 0px !important;
+  }
+
+
+  .box_jumper{
+    float: left;
+
+    max-height: 300px;
+    max-width: 655px;
+    overflow-y: scroll;
+    position: relative;
+    width: 57%;
+
+
+    -moz-border-radius:5px 5px 5px 5px;
+    box-shadow: 0px 0px 80px     gray; -webkit-box-shadow: 0px 0px 80px gray; -moz-box-shadow: 0px 0px 80px gray;
+
+
+
+  }
+  .pulsante{
+   float: left;
+   top: 90px;
+   position: absolute;
+   z-index: 1001;
+ }
+
+
+ #pulsanti {
+  float: right;
+  margin-right: -46px;
+  overflow: hidden;
+  position: absolute;
+  top: 90px;
+  width: 43px;
+  z-index: 2000;
+}
+
+.sidepanelhide {
+  position: absolute !important;
+  width: 8px !important;
+}
+
+.container-videosidepanelshow{
+  margin-left:   350px;
+}
+
+.container-videosidepanelhide{
+  margin-left:   0px;
+}
+
+
+
+#sidepanel {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 70px;
+  width: 500px;
+}
+
+#gglmsheader{
+background-color: #f2f2f2;
+height: 60px;
+left: 0;
+padding-top: 19px !important;
+position: fixed;
+right: 0;
+top: 90px;
+z-index: 1;
+font-size: 16px;
+}
+
+.slider{
+  /*margin-top: 26px !important;*/
+}
+
+
+#moduli {
+  bottom: 0;
+  height: 170px;
+  left: 0;
+  position: fixed;
+  right: 0;
+  border-top-color: #F2F2F2;
+  border-top-style: solid;
+  /*padding-left: 15px;*/
+}
+
+.breadcrumb li:not(:first-child):after {
+  content: none !important;
+}
+
+.allegato{
+
+  background-image: url("image/graffetta.png");
+  background-repeat: no-repeat;
+  overflow: auto;
+  padding-bottom: 5px;
+  padding-left: 33px;
+  padding-top: 5px;
+
+}
+
+.allegato a {
+  color: black;
+}
+
+
+#attestato 	img {
+  float: right;
+  margin: 0 100px;
+  width: 111px;
+}
+
+
+
+.container-video {
+  /*background-color: #BAC9Df;*/
+  top: 160px;
+  left: 20px;
+  /*padding: 10px;*/
+  position: fixed;
+  right: 0;
+  bottom: 170px;
+  z-index: 10;
+
+
+/*  height: calc(100% - 240px);
+  height: -moz-calc(100% - 240px);
+  height: -webkit-calc(100% - 240px);*/
+
+
+}
+
+#gglms_container {
+  position: fixed;
+  top:94px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  
+  background-color: #E4E4E4;
+  z-index: 1500;
+}
+
+
+
+
+.sidepanel {
+  background: none repeat scroll 0 0 #f2f2f2;
+  float: left;
+  overflow-y: auto;
+  left: 0;
+  position: fixed;
+  top: 150px;
+  width: 350px;
+  bottom: 0px;
+  /*overflow: scroll;*/
+}
+
+#panel_jumper {
+/* background: none repeat scroll 0 0 #FFD37A;
+ float: left;
+
+ left: -300px;
+ position: fixed;
+ width: 300px;
+ z-index: 1001;
+ top: 50px;
+ overflow: scroll;
+ overflow-x: hidden;
+ bottom: 0px;*/
+
+}
+.slider-arrow {
+ background: none repeat scroll 0 0 #FFD37A;
+ color: #000000;
+ float: left;
+ font: 400 12px Arial,Helvetica,sans-serif;
+ left: 0px;
+ padding: 5px;
+ position: fixed;
+ text-decoration: none;
+ width: 58px;
+ z-index: 1002;
+ top: 50px;
+ border-bottom-right-radius: 5px;
+}
+
+
+
+
+
+
+.anteprima_jumper
+{
+  width: 65px;
+  float: left;
+  margin: 3px;
+}
+
+
+/*
+
+ROBA JUMPER 
+
+*/
+
+
+
+
+
+
+
+/*TUTTA LA PARTE DEL QUIZ*/
+
+
+
+.lightbox {
+  background-color: #3c6ca3;
+  color: #FFFFFF;
+  display: none;
+  height: auto;
+  left: 0;
+  opacity: 0.89;
+  padding: 15px 90px;
+  position: relative;
+  top: 0;
+  width: 80%;
+  z-index: 9999;
+}
+.ongo {
+  display: block;
+  left: auto !important;
+  top: auto !important;
+}
+.lightbox a {
+  border-bottom: 1px dashed #FFFFFF;
+  color: #FFFFFF;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.lightbox label {
+  display: block;
+  margin-top: 5px;
+}
+.lightbox .resume {
+  margin-top: 10px;
+}
+
+
+/*FINE PARTE QUIZ*/
+.btn {
+
+  width: auto;
+  left: 150px;
+  max-width: 200px;
+}
+
+.btn-success {
+  background-color: #5BB75B;
+  background-image: linear-gradient(to bottom, #62C462, #51A351);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-danger {
+  background-color: #DA4F49;
+  background-image: linear-gradient(to bottom, #EE5F5B, #BD362F);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+/*
+//////////////
+UPLOAD 
+/////////////
+*/
+
+
+
+.fileinput-button {
+  font-size: 30px;
+  overflow: hidden;
+  padding-top: 30px;
+  position: relative;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+
+
+
+.gf-menu-toggle{
+  display: none !important;
+}
+
+
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+
+
+
+/*Contenuti in Footer*/
+.boxContentFooter {
+  float: left;
+  width: 150px;
+}
+
+.boxContentFooter .boxtitle {
+  font-size: 10px;
+  line-height: 18px;
+  height: 38px;
+}
+
+
+.boxContentFooter .boximg {
+  height: 84px;
+  overflow: hidden;
+}
+
+
+
+
+
+#BtSchedaCaso{
+
+  display: block !important;
+}
+
+.popover.bottom .arrow::after{
+  left: 0px !important;
+}
+
+#patway {
+  background-color: #bac9d0;
+  color: #363880 !important;
+  border-bottom-style:  solid;
+  border-bottom-color: whitesmoke;
+}
+
+
+/*RIDUCO LA DIMENSIONE DELLE BREADCRUMBS QUANDO LO SCHERMO E' PICCOLO*/
+@media (max-width: 1200px) {
+  #patway{
+    font-size: 10px;
+  }
+  
+  #moduli {
+      display: none;
+          
+  }
+  
+
+}
+
+
+
+
+.breadcrumb > li + li::before {
+
+  color: #00387a !important;
+
+}
+
+
+.modal-body {
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+.modal-body-scorm {
+  max-height: 2000px !important;
+  overflow-y: auto;
+}
+
+.modal-dialog-schedacaso{
+  z-index: 1050 !important;
+  width: 70% !important;
+  height: 80%   !important;
+  /*overflow-y: auto;*/
+}
+
+.modal-dialog-normativa{
+  z-index: 1050 !important;
+  width: 70% !important;
+  height: 80%   !important;
+  /*overflow-y: auto;*/
+}
+
+.modal-dialog-scorm{
+  z-index: 1050 !important;
+  width: 1090px  !important;
+  height: 700px !important;
+  margin: 1px auto !important
+  
+}
+
+.modal-backdrop.in {
+  opacity: 0.5 !important;
+}
+
+
+
+
+
+/*
+
+CODICE PER SCROLLER ORIZZONTALE 
+DEI MODULI
+
+*/
+
+
+
+/*************************************
+ * styling generico elementi ALS
+ ************************************/
+
+.als-container {
+  position: relative;
+  width: 100%;
+  margin: 0px auto;
+  z-index: 0;
+}
+
+.als-viewport {
+  position: relative;
+  overflow: hidden;
+  margin: 0px auto;
+  width: 70% !important;
+}
+
+.als-wrapper {
+  position: relative;
+  list-style: none;
+
+}
+
+.als-item {
+  position: relative;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  float: left;
+}
+
+.als-prev, .als-next {
+  position: absolute;
+  cursor: pointer;
+  clear: both;
+}
+/*************************************
+ * styling specifico #demo1
+ ************************************/
+
+#scroll_moduli {
+  /*margin: 40px auto;*/
+}
+
+#scroll_moduli .als-item {
+  margin: 0px 5px;
+  padding: 4px 0px;
+  min-height: 120px;
+  min-width: 100px;
+  text-align: center;
+}
+
+#scroll_moduli .als-item img {
+  display: block;
+  margin: 0 auto;
+  vertical-align: middle;
+}
+
+#scroll_moduli .als-prev, #demo1 .als-next {
+  top: 40px;
+}
+
+#scroll_moduli .als-prev {
+  left: 50px;
+  top: 70px;
+}
+
+#scroll_moduli .als-next {
+  right: 50px;
+  top: 70px
+}
+

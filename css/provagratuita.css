@@ -1,0 +1,19 @@
+/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#provagratuita{
+    font-family: NovecentowideNormal;
+    height: 300px;
+    margin: auto;
+    width: 550px;
+    font-size: medium;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 900;
+
+}

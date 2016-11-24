@@ -1,0 +1,79 @@
+/*SHOWREEL*/
+.box{
+width: 230px !important;
+height: 230px;
+float: left;
+position: relative;
+margin: 3px;
+padding: 5px !important;
+
+background-color: whitesmoke;
+opacity: 1;
+
+}
+
+
+.box:hover{
+background-color: whitesmoke;
+opacity: 0.5;
+
+
+}
+
+.boximg {
+  height: 130px !important;
+  overflow: hidden;
+}
+
+.boxtitle {
+
+  height: 60px !important;
+  width:  100% !important;
+  font-size: 11px;
+  line-height: 18px;
+  font-weight: bold;
+  position: relative;
+  padding: 5px;
+}
+
+.jcarousel li {
+  height: 270px !important;
+  width: 230px !important;
+}
+
+
+
+.boxinfo {
+
+  /*height: 80px !important;*/
+  width:  100% !important;
+  
+  color: black;
+  float: left;
+  font-size: 10px;
+  position: relative;
+
+
+  text-align: center;
+
+}
+
+
+.contentpage{
+  /*display: none;*/
+}
+
+#results{
+overflow: hidden;
+min-height: 540px;
+height: auto;
+}
+
+.ui-widget-content{
+  border : 0 !important;
+}
+
+.navtab{
+
+  display: inline-block !important;
+}

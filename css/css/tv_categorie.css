@@ -1,0 +1,176 @@
+/* 
+    Document   : webtv
+    Created on : 11-feb-2012, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#tv_categorie{
+    float: right;
+    position: relative;
+    width: 200px;
+    height: 500px;
+}
+
+.tv_categorie_lista{
+    float: left;
+    position: relative;
+    height: 20px;
+    width: 100%;
+    padding-left: 20px;
+
+    border-color: #61625D;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    margin-bottom: 4px;
+    cursor: pointer;
+
+}
+
+.titolo_categoria
+{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    color: #4D60D6;
+}
+
+.tv_categorie_lista:hover{
+
+    background-color:  #ccc ;
+    box-shadow: 0px 0px 80px #fff; -webkit-box-shadow: 0px 0px 80px #fff; -moz-box-shadow: 0px 0px 80px #fff;
+}
+
+.tv_contenuto{
+    width: 479px;
+    height: 90px;
+    padding : 1px;
+    float: left;
+    position: relative;
+    border: 1px dotted #e7e7e7;
+    margin: 1px;
+    cursor: pointer;
+
+}
+
+.tv_contenuto:hover{
+    background-color: InactiveBorder;
+}
+
+.tv_contenuto_titolo{
+    float: left;
+    position: relative;
+
+    color: black;
+    font-weight: bold;
+    margin-left: 120px;
+
+}
+.tv_contenuto_descrizione{
+    float: left;
+    position: relative;
+
+    color: gray;
+    margin-left: 120px;
+
+}
+.tv_contenuto_titolo:hover{
+    float: left;
+    position: relative;
+    /* box-shadow: 0px 0px 80px #fff; -webkit-box-shadow: 0px 0px 80px #fff; -moz-box-shadow: 0px 0px 80px #fff;*/
+
+}
+
+.tv_contenuto_background{
+    opacity: 0.9;
+    position:absolute;
+    width:200px;
+    height: 90px;
+
+}
+
+.tv_contenuto_background:hover{
+    opacity: 1;
+}
+
+
+
+
+#tv_contenuti_categoria{
+}
+
+
+#pagination{
+    width: 600px;
+
+}
+
+.list-footer{
+    /*    width: 600px;*/
+}
+
+.list-footer li {
+    list-style: none;
+
+    float: left;
+}
+
+#pagination{
+    float: left;
+    position: relative;
+    clear: left;
+}
+
+.greybar{
+    width: 100%;
+    height: 4px;
+    background-color: grey;
+    opacity: 0.4;
+    float: left;
+    position: relative;
+}
+
+
+.datapubblicazione {
+    bottom: 0;
+    float: right;
+    font-size: 9px;
+    position: absolute;
+    right: 3px;
+}
+
+
+/*pagination */
+
+
+.pagination_tv {
+    text-align: center; 
+}
+p.counter {
+    padding:10px;
+}
+.pagination_tv span, .pagination_tv a, ul.pagenav li a {
+    font-size:12px;
+    margin:5px; 
+    padding:5px 5px; 
+    background:#F3F3F3; 
+    border:1px solid #000 !important; 
+    position:relative;
+    color:#000;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.pagination_tv a, ul.pagenav li a {  
+    font-weight: bold; 
+    text-decoration:underline;
+    font-size:12px;
+    background: #4D60D6;
+}
+.pagination_tv a:hover,ul.pagenav li a:hover  {
+    background:#3074b3;
+    color:#fff;
+}
+

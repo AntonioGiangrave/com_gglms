@@ -1,0 +1,155 @@
+/* 
+    Document   : webtv
+    Created on : 11-maggio-2014, 11.22.25
+    Author     : Tony
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+._popover{
+    display: inline-block !important;
+}
+
+
+
+
+.imgunita{
+    margin: 40px;
+    width: 200px;
+}
+
+
+
+.imgasse{
+
+    max-width: 600px;
+
+}
+.mezzoboxunitacontenuti img {
+    margin: 0 20px;
+    vertical-align: -4px;
+    width: 30px;
+}
+
+.titolobox{
+    color: #195182;
+    display: block;
+    font-size: 24px;
+    height: 30px;
+    text-align: left;
+}
+
+.mezzoboxunitacontenuti{
+    float: left;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 36px;
+    width: 100%;
+}
+
+.mezzoboxunitacontenuti ul{
+    padding-left: 30px !important;
+}
+
+.mezzoboxunitaimmagine{
+    width: 40%;
+    float: left;
+    text-align:     center;
+
+}
+
+
+.listaUnita{
+
+    -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; border-radius: 5px 5px 5px 5px;
+    box-shadow: 0px 0px 7px     gray; -webkit-box-shadow: 0px 0px 7px gray; -moz-box-shadow: 0px 0px 7px gray;
+
+    float: left;
+    margin: 20px auto auto;
+    min-height: 160px;
+    width: 100%;
+
+}
+
+
+
+
+.listaUnita:hover{
+    box-shadow: 0px 0px 11px     gray; -webkit-box-shadow: 0px -14px 11px gray; -moz-box-shadow: 0px -14px 11px gray;
+}
+
+
+.headerunita{
+
+    padding: 10px 
+}
+
+
+.elementi {
+    clear: left;
+    float: left;
+    height: auto;
+    margin-left: 70px;
+    position: relative;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.elementi a{
+    font-family: sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    text-decoration: none;
+
+}
+
+.elementi img {
+    vertical-align: middle;
+}
+
+
+.item {
+    clear: left;
+    float: left;
+    margin: 2px;
+    position: relative;
+}
+
+.item a:hover{
+    font-weight: bold;
+}
+
+#img_asse {
+    border-radius: 5px;
+    max-height: 190px;
+    overflow: hidden;
+    max-width: 230px;
+    margin-top: 10px;
+}
+
+
+.elementi img{
+    margin-right: 5px;
+}
+
+#titolo_corso{
+    color: #195182;
+}
+
+.dialog{
+
+    display: none;
+}
+
+
+.list-group-item .active {
+    background-color: #318BBC !important;
+    border-color: #318BBC !important;
+
+}
+
+.list-group-item {
+    background-color: #318BBC !important;
+    border-color: #318BBC !important;
+
+}
