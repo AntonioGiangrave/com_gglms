@@ -84,6 +84,8 @@ class gglmsController extends JControllerLegacy {
         $this->registerTask('setPermanenza', 'setPermanenza');
         $this->registerTask('getCodiciSicurezzaGiorno', 'getCodiciSicurezzaGiorno');
         $this->registerTask('getReportCoupon', 'getReportCoupon');
+        
+        
     }
 
     public function setNotifiche() {
@@ -314,6 +316,93 @@ class gglmsController extends JControllerLegacy {
         JRequest::setVar('view', 'provagratuita');
         parent::display();
     }
+//    -------------------------------------------------------------------------start
+    public function checkGroupon($email,$coupon,$sicurezza) {
+        $arrayret = array();
+        $pas_email=trim(strtolower($email));
+        $pas_code=trim(strtoupper($sicurezza));
+        $pas_coupon= trim(strtoupper($coupon));
+
+
+//        if(strlen($pas_email)<5 || strlen($pas_code)<5 || strlen($pas_coupon)<3):
+//            $arrayret = array();
+//            $arrayret["ok"] = false;
+//            $arrayret['error'] = "Provare con un altro Browser, consigliato Google Chrome.";
+//            return  $arrayret;
+//        endif;
+//        if($this->db1->num_rows("SELECT id FROM attivazioni WHERE UPPER(coupon)='".$pas_coupon."' OR UPPER(sicurezza)='".$pas_code."'")>0):
+//            $arrayret = array();
+//            $arrayret["ok"] = false;
+//            $arrayret['error'] = "Il coupon è già stato usato";
+//            return  $arrayret;
+//        endif;
+        $user = "webmaster@bsinternational.eu";
+        $password = "q9o5s0w1";
+        $handle = fopen("http://ticket.groupon.it/api.xml?user=$user&password=$password&securitycode=$pas_code&coupon=$pas_coupon&email=$pas_email&country=IT ", "r");
+        $result = stream_get_contents($handle);
+
+        fb::log($result,"risposta groupon");
+
+        fclose($handle);
+        $doc = new DOMDocument();
+        $doc->loadXML($result);
+        $scr = array();
+        $xml_liv1 = $doc->getElementsByTagName("message");
+        foreach ($xml_liv1 as $xml_liv1_det) {
+            $stato = $xml_liv1_det->getAttribute('value');
+            $opzione = $xml_liv1_det->getAttribute('opzione');
+            $titolo = $xml_liv1_det->getAttribute('titolo');
+        }
+//        $id = $this->db1->query_insert_id("check_groupon", array("stato" => $stato, "opzione" => $opzione, "email" => $pas_email, "security" => $pas_code,"coupon" => $pas_coupon, "xml" => $result));
+//        $this->debug_msg($result, __FUNCTION__);
+        return $this->checkStatusCoupon($stato,$opzione,$titolo);
+    }
+
+    public function checkStatusCoupon($stato,$opzione,$titolo) {
+        if ($stato != "Valid and not redeemed"):
+            return $this->errorStatusCoupon($stato);
+        endif;
+        $arrayret = array();
+        $arrayret["ok"] = true;
+        $arrayret['opzione_id']=0;
+        $read["opzione"]=$opzione;
+        //    $read["deal"]=$titolo;
+        $this->db->query_select("opzioni",$read);
+        if($this->db->next_record()){
+            $arrayret['opzione_id']=$this->db->f("id");
+            return $arrayret;
+        }
+        return false;
+    }
+
+    public function errorStatusCoupon($stato) {
+        $arrayret['error'] = "Controllare di aver inserito la mail usata per comprare il coupon e il codice sicurezza corretto";
+
+        switch ($stato) {
+            case "No data":
+            case "No valid user:":
+            case "Not valid":
+                $arrayret['error'] = "Controllare di aver inserito la mail usata per comprare il coupon e il codice sicurezza corretto";
+                break;
+            case "Expired":
+                $arrayret['error'] = "Il coupon è scaduto";
+                break;
+            case "Coupon not Found":
+                $arrayret['error'] = "Codice coupon errato. controllare di averlo inserito corretamente";
+                break;
+            case "Valid and redeemed":
+                $arrayret['error'] = "Il coupon è già stato riscattato";
+                break;
+            case "Refuded":
+                $arrayret['error'] = "Il coupon è stato rimborsato";
+                break;
+        }
+        $arrayret["ok"] = false;
+        $arrayret["stato"] = $stato;
+        $this->debug_msg($arrayret, __FUNCTION__);
+        return $arrayret;
+    }
+//    -------------------------------------------------------------------------end
 
     public function check_coupon() {
         $app = &JFactory::getApplication();

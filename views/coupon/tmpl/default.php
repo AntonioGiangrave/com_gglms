@@ -109,14 +109,19 @@ defined('_JEXEC') or die('Restricted access');
                 jQuery(".help-inline-coupon").html("Verifica in corso...");
 
 
-                jQuery.get("index.php?option=com_gglms&task=check_coupon", {coupon: jQuery("#inputCoupon").val(), codiceverifica: jQuery("#inputVerifica").val()},
+                jQuery.get("index.php?option=com_gglms", {
+                                                            task:'check_coupon',
+                                                            coupon: jQuery("#inputCoupon").val(), 
+                                                            codiceverifica: jQuery("#inputVerifica").val()},
+                                                            
                     function (data) {
+                        console.log(data);
                         if (data.valido) {
                             jQuery(".inputCoupongroup").removeClass('error').addClass('success');
                             jQuery("#inputCoupon").prop('disabled', true);
                             jQuery("#report").html(data.mieicorsi);
 
-                            britshConnector(data);
+                            //britshConnector(data);
 
                         } else
                         {
