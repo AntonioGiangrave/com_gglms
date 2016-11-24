@@ -24,7 +24,7 @@ defined('_JEXEC') or die('Restricted access');
                 console.log("negativo");
                 return false;
             } else {
-                console.log("true");
+                console.log("convalida è OK");
                 return true;
             }
         }
@@ -108,14 +108,13 @@ defined('_JEXEC') or die('Restricted access');
                 jQuery(".help-inline-sicurezza").html("Codice valido");
                 jQuery(".help-inline-coupon").html("Verifica in corso...");
 
-
                 jQuery.get("index.php?option=com_gglms", {
-                                                            task:'check_coupon',
+                                                            task:'checkGroupon',
                                                             coupon: jQuery("#inputCoupon").val(), 
-                                                            codiceverifica: jQuery("#inputVerifica").val()},
-                                                            
+                                                            codiceverifica: jQuery("#inputVerifica").val()
+                    },
+                    
                     function (data) {
-                        console.log(data);
                         if (data.valido) {
                             jQuery(".inputCoupongroup").removeClass('error').addClass('success');
                             jQuery("#inputCoupon").prop('disabled', true);
@@ -130,8 +129,8 @@ defined('_JEXEC') or die('Restricted access');
 
                         }
                         jQuery(".help-inline-coupon").html(data.report);
-
-                    }, 'json');
+                    },
+                    'json');
             }
         });
     });
