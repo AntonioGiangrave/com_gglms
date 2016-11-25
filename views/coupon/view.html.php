@@ -33,8 +33,8 @@ class gglmsViewCoupon extends JViewLegacy {
 //        $document->addScript('components/com_gglms/js/miniUpload/assets/js/jquery.fileupload.js');
 //        $document->addScript('components/com_gglms/js/miniUpload/assets/js/script.js');
 
-        $document->addStyleSheet(JURI::root(true) . '/components/com_gglms/js/miniUpload/assets/css/style.css');
-        // $document->addStyleSheet(JURI::root(true) . '/components/com_gglms/css/coupon.css');
+//        $document->addStyleSheet(JURI::root(true) . '/components/com_gglms/js/miniUpload/assets/css/style.css');
+         $document->addStyleSheet(JURI::root(true) . '/components/com_gglms/css/coupon.css');
 
 
         parent::display($tpl);

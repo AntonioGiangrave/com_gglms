@@ -64,15 +64,16 @@
 
 }
 
-/*#report{
+
+#report{
 
     font-weight: 600;
     height: 50px;
-    padding: 1px 18px;
+    padding: 1px 18px 100px;
     width: 100%;
 }
 
-#imgcoupon{
+/*#imgcoupon{
     float: right;
     margin-right: 265px;
 

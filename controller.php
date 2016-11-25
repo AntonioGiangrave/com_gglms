@@ -309,7 +309,7 @@ class gglmsController extends JControllerLegacy {
 
         $domani = date('Y-m-d G:i:s', mktime(date(G), date(i), date(s), date(m), date(d) + 1, date(Y)));
         $query = "INSERT IGNORE INTO eta_gg_coupon (coupon, id_utente, abilitato, data_utilizzo, data_abilitazione, data_scadenza) "
-                . "VALUES ('provagratuita$userid', $userid, '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '$domani')";
+            . "VALUES ('provagratuita$userid', $userid, '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '$domani')";
 
         $db->setQuery((string) $query);
         $res = $db->query();
@@ -317,138 +317,126 @@ class gglmsController extends JControllerLegacy {
         JRequest::setVar('view', 'provagratuita');
         parent::display();
     }
-//    -------------------------------------------------------------------------start
-    public function checkGroupon() {
-        $arrayret = array();
+
+    public function checkGroupon()
+    {
+        $app = &JFactory::getApplication();
         $user = JFactory::getUser();
         $pas_coupon=trim(strtoupper(JRequest::getVar('coupon')));
         $pas_code=trim(strtoupper(JRequest::getVar('codiceverifica')));
         $pas_email= trim(strtolower($user->get('email')));
+        $user_id= $user->get('id');
 
-        fb::log($pas_email.' '.$pas_code.' '.$pas_coupon,"variabili utente");
+        if(strlen($pas_email)<5 || strlen($pas_code)<5 || strlen($pas_coupon)<3):
+            $arrayret = array();
+            $arrayret["ok"] = false;
+            $arrayret['error'] = "Provare con un altro Browser, consigliato Google Chrome.";
+            echo json_encode($arrayret);
+            $app->close();
+        endif;
+        if($this->checkCouponExist($pas_coupon)):
+            $arrayret = array();
+            $arrayret["ok"] = false;
+            $arrayret['error'] = "Il coupon è già stato usato";
+            echo json_encode($arrayret);
+            $app->close();
+        endif;
 
-
-//        if(strlen($pas_email)<5 || strlen($pas_code)<5 || strlen($pas_coupon)<3):
-//            $arrayret = array();
-//            $arrayret["ok"] = false;
-//            $arrayret['error'] = "Provare con un altro Browser, consigliato Google Chrome.";
-//            return  $arrayret;
-//        endif;
-//        if($this->db1->num_rows("SELECT id FROM attivazioni WHERE UPPER(coupon)='".$pas_coupon."' OR UPPER(sicurezza)='".$pas_code."'")>0):
-//            $arrayret = array();
-//            $arrayret["ok"] = false;
-//            $arrayret['error'] = "Il coupon è già stato usato";
-//            return  $arrayret;
-//        endif;
         $user = "webmaster@bsinternational.eu";
         $password = "q9o5s0w1";
         $fopen = "http://ticket.groupon.it/api.xml?user=$user&password=$password&securitycode=$pas_code&coupon=$pas_coupon&email=$pas_email&country=IT ";
-        fb::log($fopen, "fopen");
         $handle = fopen($fopen, "r");
         $result = stream_get_contents($handle);
-
-//        fb::log("http://ticket.groupon.it/api.xml?user=$user&password=$password&securitycode=$pas_code&coupon=$pas_coupon&email=$pas_email&country=IT ","handle");
-        fb::log($result,"risposta groupon");
 
         fclose($handle);
         $doc = new DOMDocument();
         $doc->loadXML($result);
-        $scr = array();
         $xml_liv1 = $doc->getElementsByTagName("message");
 
         foreach ($xml_liv1 as $xml_liv1_det) {
             $stato = $xml_liv1_det->getAttribute('value');
             $opzione = $xml_liv1_det->getAttribute('opzione');
-            $titolo = $xml_liv1_det->getAttribute('titolo');
+//          $titolo = $xml_liv1_det->getAttribute('titolo');
         }
-
-
-
-//        $id = $this->db1->query_insert_id("check_groupon", array("stato" => $stato, "opzione" => $opzione, "email" => $pas_email, "security" => $pas_code,"coupon" => $pas_coupon, "xml" => $result));
-//        $this->debug_msg($result, __FUNCTION__);
-        return $this->checkStatusCoupon($stato,$opzione,$titolo);
+        $array_groupon = array("user_id"=>$user_id, "stato"=>"$stato", "opzione"=>"$opzione", "coupon"=>"$pas_coupon", "code"=>"$pas_code", "message"=>"$result" );
+        echo json_encode($this->checkStatusCoupon($array_groupon));
+        $app->close();
     }
 
-    public function checkStatusCoupon($stato,$opzione,$titolo) {
-        if ($stato != "Valid and not redeemed"):
-            return $this->errorStatusCoupon($stato);
-        endif;
-        $arrayret = array();
-        $arrayret["ok"] = true;
-        $arrayret['opzione_id']=0;
-        $read["opzione"]=$opzione;
-        //    $read["deal"]=$titolo;
-//        controllo sulla mia tabella  opzione groupon (da creare) e mi recupero
-//        id coso quindi devo popolare la tabella coupon con i seguenti:
-//        coupon che me lo prendo da $pass_coupon
-//        corsi abilitati = id corso
-//        id utente
-//        creat
+    public function checkStatusCoupon($array_groupon) {
 
-        $app = &JFactory::getApplication();
+        if ($array_groupon[stato] != "Valid and not redeemed") return $this->errorStatusCoupon($array_groupon['stato']);
+
         $db = & JFactory::getDbo();
         $query = "
-        SELECT id_corso, durata
-        FROM #__gg_gg_opzioni_groupon
+        SELECT *
+        FROM #__gg_opzioni_groupon
         WHERE 
-        opzione =  '$opzione' 
+        opzione =  '$array_groupon[opzione]' 
         ";
-        FB::log($query, "Query su opzioni");
         $db->setQuery($query);
-        $res = $db->loadResult();
-        FB::log($res, "esito query");
-        $id_corso = $res[0];
-        $durata = $res[1];
-        sku = $res[2];
+        $result_opzioni = $db->loadAssoc();
+
+        $model = $this->getModel('coupon');
+        $arrayret = array();
+        $arrayret["ok"] = true;
+        $arrayret["opzione"] = $result_opzioni;
+        $arrayret["dati_utente"]= $model->get_datiutente();
+        $arrayret["mieicorsi"]= $model->get_listaCorsiFast($result_opzioni[id_corso]);
+
         $query = "
-        INSERT INTO #__gg_gg_coupon (
-          coupon, 
-          corsi_abilitati, 
-          id_utente, 
-          creation_time, 
-          abilitato, 
-          data_inizio, 
-          data_abilitazione, 
-          durata, 
-          codiceverifica, 
+        INSERT INTO #__gg_coupon (
+          coupon,
+          corsi_abilitati,
+          id_utente,
+          creation_time,
+          abilitato,
+          id_iscrizione,
+          data_utilizzo,
+          data_abilitazione,
+          durata,
+          codiceverifica,
           sku)
         VALUES (
-          '$pas_coupon',
-          '$id_corso',
-          '$user->get('id')'
-          'NOW',
-          '1',
-          'NOW',
-          'NOW',
-          '$durata',
-          '$pas_code',
-          '$sku'
-        ) 
+          '$array_groupon[coupon]',
+          $result_opzioni[id_corso],
+          $array_groupon[user_id],
+          NOW(),
+          1,
+          '$array_groupon[message]',
+          NOW(),
+          NOW(),
+          $result_opzioni[durata],
+          '$array_groupon[code]',
+          '$result_opzioni[sku]'
+        )
         ";
-        FB::log($query, "Query su opzioni");
         $db->setQuery($query);
+        $db->query();
 
+        $arrayret["id_opzione"]= $result_opzioni[id];
+        $arrayret["coupon"]= $array_groupon[coupon];
 
+        return $arrayret;
 
+    }
 
-
-
-
-
-
-        $app->close();
-
-//
-
-        $this->db->query_select("opzioni",$read);
-        if($this->db->next_record()){
-            $arrayret['opzione_id']=$this->db->f("id");
-            return $arrayret;
-        }
-        return false;
+    public function checkCouponExist($pas_coupon){
+        $db = & JFactory::getDbo();
+        $query = "
+        SELECT COUNT(coupon)
+        FROM #__gg_coupon
+        WHERE 
+        coupon =  '$pas_coupon' 
+        ";
+        $db->setQuery($query);
+        $result = $db->loadResult();
+        FB::log($result, "verifica coupon");
+        return $result;
     }
 
     public function errorStatusCoupon($stato) {
+
         $arrayret['error'] = "Controllare di aver inserito la mail usata per comprare il coupon e il codice sicurezza corretto";
 
         switch ($stato) {
@@ -472,11 +460,9 @@ class gglmsController extends JControllerLegacy {
         }
         $arrayret["ok"] = false;
         $arrayret["stato"] = $stato;
-        $this->debug_msg($arrayret, __FUNCTION__);
+//        $this->debug_msg($arrayret, __FUNCTION__);
         return $arrayret;
     }
-
-//    -------------------------------------------------------------------------end
 
     public function check_coupon() {
         $app = &JFactory::getApplication();
@@ -505,7 +491,7 @@ class gglmsController extends JControllerLegacy {
                 $results['mieicorsi'] = $model->get_listaCorsiFast($dettagli_coupon['corsi_abilitati']);
                 $results['coupon']= $coupon;
                 $results['mieidati'] = $model->get_datiutente();
-                
+
                 fb::log($results);
                 // $results['report'] .= "<br><h3> BENVENUTO!  <a href='/home/webtv.html'><img src='/home/images/login/webtv.png'></a></h3><br> ";
             }
@@ -515,7 +501,7 @@ class gglmsController extends JControllerLegacy {
         $app->close();
     }
 
-  
+
 
     public function setTrack() {
 
@@ -524,12 +510,9 @@ class gglmsController extends JControllerLegacy {
         $id_elemento = JRequest::getInt('id', 0);
         $db = & JFactory::getDbo();
 
-
         $varName = $_REQUEST['varName'];
         $varValue = $_REQUEST['varValue'];
         $id_elemento = $_REQUEST['id_elemento'];
-
-
 
         $app = &JFactory::getApplication();
         $query = "
@@ -585,8 +568,8 @@ class gglmsController extends JControllerLegacy {
         $app = &JFactory::getApplication();
         $model = $this->getModel('report');
         $where = " codiceverifica is not null "
-                . " AND data_utilizzo  >   '$giorno' "
-                . " AND data_utilizzo  <   DATE_ADD('$giorno' ,INTERVAL 1 DAY)";
+            . " AND data_utilizzo  >   '$giorno' "
+            . " AND data_utilizzo  <   DATE_ADD('$giorno' ,INTERVAL 1 DAY)";
 
 
         $results = $model->getReportCoupon($where);
@@ -614,7 +597,7 @@ class gglmsController extends JControllerLegacy {
         $results = $model->setBadCode($where);
 
         echo implode(",", $codici);
-        
+
         $app->close();
     }
 
@@ -623,8 +606,8 @@ class gglmsController extends JControllerLegacy {
         $app = &JFactory::getApplication();
         $model = $this->getModel('report');
         $where = " codiceverifica is not null "
-                . " AND data_utilizzo  >   '$giorno' "
-                . " AND data_utilizzo  <   DATE_ADD('$giorno' ,INTERVAL 1 DAY)";
+            . " AND data_utilizzo  >   '$giorno' "
+            . " AND data_utilizzo  <   DATE_ADD('$giorno' ,INTERVAL 1 DAY)";
 
 
         $results = $model->getReportCoupon($where);
@@ -647,12 +630,12 @@ class gglmsController extends JControllerLegacy {
         <tbody>';
 
         foreach ($results as $coupon) {
-            
+
             if($coupon['daverificare'])
                 $out .= "<tr class='danger'>";
             else
                 $out .= "<tr>";
-            
+
             $out .= "<td>" . $coupon['coupon'] . "</td>";
             $out .= "<td>" . $coupon['codiceverifica'] . "</td>";
             $out .= "<td>" . $coupon['data_utilizzo'] . "</td>";
@@ -660,14 +643,14 @@ class gglmsController extends JControllerLegacy {
             $out .= "<td>" . $coupon['firstname'] . "</td>";
             $out .= "<td>" . $coupon['lastname'] . "</td>";
             $out .= "<td>" . $coupon['telefono'] . "</td>";
-            
-            
+
+
             if($coupon['daverificare'])
                 $out .= "<td>" . $coupon['email'] . "</td>";
             else
                 $out .= "<td></td>";
-            
-            
+
+
             $out .= "</tr>";
         }
 
@@ -679,7 +662,7 @@ class gglmsController extends JControllerLegacy {
         $app->close();
     }
 
-    
-   
+
+
 }
 

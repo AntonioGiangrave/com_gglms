@@ -45,53 +45,29 @@ defined('_JEXEC') or die('Restricted access');
             var today = yyyy.toString() + mm.toString() + dd.toString();
             now = yyyy+'-'+mm+'-'+dd;
             var rand = Math.floor(Math.random() * 100) + 1;
-//                var seller = values['seller'].split('_');
-//                var id_iscrizione = seller[1] + '-' + today + '-' + rand;
-
 
             var xml_gen_request = '<richiesta>' +
-                '<id>'+data.mieidati.id+'</id>' +
-                '<nome>'+data.mieidati.firstname+'</nome>' +
-                '<cognome>'+data.mieidati.lastname+'</cognome>' +
-                '<email>'+data.mieidati.email+'</email>' +
-                '<coupon>'+data.coupon.coupon+'</coupon>' +
-                '<tipofatturazione>'+data.mieidati.cb_tipofatturazione+'</tipofatturazione>' +
-                '<ragionesociale>'+data.mieidati.cb_ragionesociale+'</ragionesociale>' +
-                '<indirizzofatturazione>'+data.mieidati.cb_indirizzofatturazione+'</indirizzofatturazione>' +
-                '<cittafatturazione>'+data.mieidati.cb_cittafatturazione+'</cittafatturazione>' +
-                '<capfatturazione>'+data.mieidati.cb_capfatturazione+'</capfatturazione>' +
-                '<partitaivacf>'+data.mieidati.partitaivacf+'</partitaivacf>' +
-
+                '<id>'+data.dati_utente.id+'</id>' +
+                '<nome>'+data.dati_utente.firstname+'</nome>' +
+                '<cognome>'+data.dati_utente.lastname+'</cognome>' +
+                '<email>'+data.dati_utente.email+'</email>' +
+                '<coupon>'+data.coupon+'</coupon>' +
+                '<tipofatturazione>'+data.dati_utente.cb_tipofatturazione+'</tipofatturazione>' +
+                '<ragionesociale>'+data.dati_utente.cb_ragionesociale+'</ragionesociale>' +
+                '<indirizzofatturazione>'+data.dati_utente.cb_indirizzofatturazione+'</indirizzofatturazione>' +
+                '<cittafatturazione>'+data.dati_utente.cb_cittafatturazione+'</cittafatturazione>' +
+                '<capfatturazione>'+data.dati_utente.cb_capfatturazione+'</capfatturazione>' +
+                '<partitaivacf>'+data.dati_utente.partitaivacf+'</partitaivacf>' +
+                '<id_opzione>'+data.id_opzione+'</id_opzione>'+
                 '</richiesta>';
 
-
-                var xml_gen_request_str = btoa(xml_gen_request);
-
-
-
-//                var xml_ena_request = '<richiesta><id>'+seller[0]+'</id><id_iscrizione>'+ id_iscrizione +'</id_iscrizione><token>' + jQuery.md5(seller[1] + now) + '</token></richiesta>';
-//                var xml_ena_request = '<richiesta><id>'+seller[0]+'</id><id_iscrizione>'+ id_iscrizione +'</id_iscrizione><token>' + now + '</token></richiesta>';
-//                var xml_ena_request_str = btoa(xml_ena_request);
-//                console.log(btoa(xml_ena_request_str));
-
-            console.log(xml_gen_request_str);
+            var xml_gen_request_str = btoa(xml_gen_request);
 
             jQuery.get("http://bsinternational.eu/getstudente.php", {data: xml_gen_request_str},
                 function (data) {
                     console.log(data);
                 });
 
-
-//            $.ajax({
-//                url:"bsinternational.eu/getstudente.php",
-//                data: {data: xml_gen_request_str}
-//            }).complete(function(data) {
-//
-//                    console.log(data);
-//
-//                return false;
-//
-//            });
         }
 
         jQuery("button").click(function (e) {
@@ -109,18 +85,18 @@ defined('_JEXEC') or die('Restricted access');
                 jQuery(".help-inline-coupon").html("Verifica in corso...");
 
                 jQuery.get("index.php?option=com_gglms", {
-                                                            task:'checkGroupon',
-                                                            coupon: jQuery("#inputCoupon").val(), 
-                                                            codiceverifica: jQuery("#inputVerifica").val()
+                        task:'checkGroupon',
+                        coupon: jQuery("#inputCoupon").val(),
+                        codiceverifica: jQuery("#inputVerifica").val()
                     },
-                    
+
                     function (data) {
-                        if (data.valido) {
+                        if (data.ok) {
                             jQuery(".inputCoupongroup").removeClass('error').addClass('success');
                             jQuery("#inputCoupon").prop('disabled', true);
                             jQuery("#report").html(data.mieicorsi);
 
-                            //britshConnector(data);
+                            britshConnector(data);
 
                         } else
                         {
@@ -128,7 +104,7 @@ defined('_JEXEC') or die('Restricted access');
                             jQuery(".inputCoupongroup").addClass('error');
 
                         }
-                        jQuery(".help-inline-coupon").html(data.report);
+                        jQuery(".help-inline-coupon").html(data.error);
                     },
                     'json');
             }
