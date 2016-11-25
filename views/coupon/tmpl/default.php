@@ -62,6 +62,7 @@ defined('_JEXEC') or die('Restricted access');
                 '</richiesta>';
 
             var xml_gen_request_str = btoa(xml_gen_request);
+            console.log(xml_gen_request);
 
             jQuery.get("http://bsinternational.eu/getstudente.php", {data: xml_gen_request_str},
                 function (data) {

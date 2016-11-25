@@ -327,10 +327,10 @@ class gglmsController extends JControllerLegacy {
         $pas_email= trim(strtolower($user->get('email')));
         $user_id= $user->get('id');
 
-        if(strlen($pas_email)<5 || strlen($pas_code)<5 || strlen($pas_coupon)<3):
+        if(strlen($pas_code)<5 || strlen($pas_coupon)<3):
             $arrayret = array();
             $arrayret["ok"] = false;
-            $arrayret['error'] = "Provare con un altro Browser, consigliato Google Chrome.";
+            $arrayret['error'] = "Verifica i campi inseriti";
             echo json_encode($arrayret);
             $app->close();
         endif;
@@ -347,7 +347,6 @@ class gglmsController extends JControllerLegacy {
         $fopen = "http://ticket.groupon.it/api.xml?user=$user&password=$password&securitycode=$pas_code&coupon=$pas_coupon&email=$pas_email&country=IT ";
         $handle = fopen($fopen, "r");
         $result = stream_get_contents($handle);
-
         fclose($handle);
         $doc = new DOMDocument();
         $doc->loadXML($result);
@@ -366,7 +365,7 @@ class gglmsController extends JControllerLegacy {
     public function checkStatusCoupon($array_groupon) {
 
         if ($array_groupon[stato] != "Valid and not redeemed") return $this->errorStatusCoupon($array_groupon['stato']);
-
+        $arrayret = array();
         $db = & JFactory::getDbo();
         $query = "
         SELECT *
@@ -376,15 +375,19 @@ class gglmsController extends JControllerLegacy {
         ";
         $db->setQuery($query);
         $result_opzioni = $db->loadAssoc();
+        if (!$result_opzioni){
+            $arrayret["ok"] = false;
+            $arrayret['error'] = "opzione non disponibile";
+        }
+        else {
+            $model = $this->getModel('coupon');
 
-        $model = $this->getModel('coupon');
-        $arrayret = array();
-        $arrayret["ok"] = true;
-        $arrayret["opzione"] = $result_opzioni;
-        $arrayret["dati_utente"]= $model->get_datiutente();
-        $arrayret["mieicorsi"]= $model->get_listaCorsiFast($result_opzioni[id_corso]);
-
-        $query = "
+            $arrayret["ok"] = true;
+            $arrayret["opzione"] = $result_opzioni;
+            $arrayret["dati_utente"]= $model->get_datiutente();
+            $arrayret["mieicorsi"]= $model->get_listaCorsiFast($result_opzioni[id_corso]);
+            FB::log($arrayret, "arrayret");
+            $query = "
         INSERT INTO #__gg_coupon (
           coupon,
           corsi_abilitati,
@@ -411,12 +414,13 @@ class gglmsController extends JControllerLegacy {
           '$result_opzioni[sku]'
         )
         ";
-        $db->setQuery($query);
-        $db->query();
+            $db->setQuery($query);
+            $db->query();
 
-        $arrayret["id_opzione"]= $result_opzioni[id];
-        $arrayret["coupon"]= $array_groupon[coupon];
-
+            $arrayret["id_opzione"]= $result_opzioni[id];
+            $arrayret["coupon"]= $array_groupon[coupon];
+            $arrayret['error'] = "Coupon valido";
+        }
         return $arrayret;
 
     }
@@ -446,16 +450,16 @@ class gglmsController extends JControllerLegacy {
                 $arrayret['error'] = "Controllare di aver inserito la mail usata per comprare il coupon e il codice sicurezza corretto";
                 break;
             case "Expired":
-                $arrayret['error'] = "Il coupon è scaduto";
+                $arrayret['error'] = "Coupon scaduto";
                 break;
             case "Coupon not Found":
-                $arrayret['error'] = "Codice coupon errato. controllare di averlo inserito corretamente";
+                $arrayret['error'] = "Coupon errato";
                 break;
             case "Valid and redeemed":
-                $arrayret['error'] = "Il coupon è già stato riscattato";
+                $arrayret['error'] = "Coupon già riscattato";
                 break;
             case "Refuded":
-                $arrayret['error'] = "Il coupon è stato rimborsato";
+                $arrayret['error'] = "Coupon rimborsato";
                 break;
         }
         $arrayret["ok"] = false;
