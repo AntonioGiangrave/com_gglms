@@ -330,7 +330,7 @@ class gglmsController extends JControllerLegacy {
         if(strlen($pas_code)<5 || strlen($pas_coupon)<3):
             $arrayret = array();
             $arrayret["ok"] = false;
-            $arrayret['error'] = "Verifica i campi inseriti";
+            $arrayret['error'] = "Codice non valido!";
             echo json_encode($arrayret);
             $app->close();
         endif;
@@ -358,12 +358,40 @@ class gglmsController extends JControllerLegacy {
 //          $titolo = $xml_liv1_det->getAttribute('titolo');
         }
         $array_groupon = array("user_id"=>$user_id, "stato"=>"$stato", "opzione"=>"$opzione", "coupon"=>"$pas_coupon", "code"=>"$pas_code", "message"=>"$result" );
-        echo json_encode($this->checkStatusCoupon($array_groupon));
+
+        $arrayret= $this->checkStatusCoupon($array_groupon);
+        echo json_encode($this->syncBritish($arrayret));
+
+       // echo json_encode($this->checkStatusCoupon($array_groupon));
         $app->close();
     }
 
-    public function checkStatusCoupon($array_groupon) {
+    public function syncBritish($arrayret){
+        $xml_gen_request = '<richiesta>' .
+            '<nome>'.$arrayret[dati_utente][firstname].'</nome>'.
+            '<cognome>'.$arrayret[dati_utente][lastname].'</cognome>' .
+            '<email>'.$arrayret[dati_utente][email].'</email>' .
+            '<coupon>'.$arrayret[coupon].'</coupon>' .
+            '<tipofatturazione>'.$arrayret[dati_utente][b_tipofatturazione].'</tipofatturazione>' .
+            '<ragionesociale>'.$arrayret[dati_utente][cb_ragionesociale].'</ragionesociale>' .
+            '<indirizzofatturazione>'.$arrayret[dati_utente][cb_indirizzofatturazione].'</indirizzofatturazione>' .
+            '<cittafatturazione>'.$arrayret[dati_utente][cb_cittafatturazione].'</cittafatturazione>' .
+            '<capfatturazione>'.$arrayret[dati_utente][cb_capfatturazione].'</capfatturazione>' .
+            '<partitaivacf>'.$arrayret[dati_utente][partitaivacf].'</partitaivacf>' .
+            '<id_opzione>'.$arrayret[id_opzione].'</id_opzione>'.
+            '<opzione>'.$arrayret[opzione].'</opzione>'.
+            '</richiesta>';
+        $xml_gen_request_str =  rawurlencode(base64_encode($xml_gen_request));
+        $fopen = "http://bsinternational.eu/getstudente.php?data=$xml_gen_request_str";
+        $handle = fopen($fopen, "r");
+        $result = stream_get_contents($handle);
+        fclose($handle);
+        $arrayret['sync_british']= "ok";
+        FB::log($result, "result");
+        return $arrayret;
+    }
 
+    public function checkStatusCoupon($array_groupon) {
         if ($array_groupon[stato] != "Valid and not redeemed") return $this->errorStatusCoupon($array_groupon['stato']);
         $arrayret = array();
         $db = & JFactory::getDbo();
@@ -386,7 +414,7 @@ class gglmsController extends JControllerLegacy {
             $arrayret["opzione"] = $result_opzioni;
             $arrayret["dati_utente"]= $model->get_datiutente();
             $arrayret["mieicorsi"]= $model->get_listaCorsiFast($result_opzioni[id_corso]);
-            FB::log($arrayret, "arrayret");
+
             $query = "
         INSERT INTO #__gg_coupon (
           coupon,
@@ -417,6 +445,7 @@ class gglmsController extends JControllerLegacy {
             $db->setQuery($query);
             $db->query();
 
+            $arrayret["opzione"]= $result_opzioni[opzione];
             $arrayret["id_opzione"]= $result_opzioni[id];
             $arrayret["coupon"]= $array_groupon[coupon];
             $arrayret['error'] = "Coupon valido";
@@ -435,14 +464,11 @@ class gglmsController extends JControllerLegacy {
         ";
         $db->setQuery($query);
         $result = $db->loadResult();
-        FB::log($result, "verifica coupon");
         return $result;
     }
 
     public function errorStatusCoupon($stato) {
-
         $arrayret['error'] = "Controllare di aver inserito la mail usata per comprare il coupon e il codice sicurezza corretto";
-
         switch ($stato) {
             case "No data":
             case "No valid user:":

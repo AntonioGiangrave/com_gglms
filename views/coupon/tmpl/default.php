@@ -15,7 +15,6 @@ defined('_JEXEC') or die('Restricted access');
     jQuery(function () {
         jQuery.ajaxSetup({cache: false});
 
-
         //Verifica Codice Sicurezza
         function convalida() {
             var pattern = /^[a-zA-Z0-9]{10}$/;
@@ -24,53 +23,11 @@ defined('_JEXEC') or die('Restricted access');
                 console.log("negativo");
                 return false;
             } else {
-                console.log("convalida è OK");
+                console.log("convalida va bene");
                 return true;
             }
         }
-
-
-        function britshConnector(data) {
-
-            if (!window.btoa) {
-                window.btoa = function(str) {
-                    return Base64.encode(str);
-                }
-            }
-            var now = new Date();
-            var dd = now.getDate();
-            var mm = now.getMonth() + 1;
-            var yyyy = now.getFullYear();
-            if(dd<10){dd='0'+dd;} if(mm<10){mm='0'+mm;}
-            var today = yyyy.toString() + mm.toString() + dd.toString();
-            now = yyyy+'-'+mm+'-'+dd;
-            var rand = Math.floor(Math.random() * 100) + 1;
-
-            var xml_gen_request = '<richiesta>' +
-                '<id>'+data.dati_utente.id+'</id>' +
-                '<nome>'+data.dati_utente.firstname+'</nome>' +
-                '<cognome>'+data.dati_utente.lastname+'</cognome>' +
-                '<email>'+data.dati_utente.email+'</email>' +
-                '<coupon>'+data.coupon+'</coupon>' +
-                '<tipofatturazione>'+data.dati_utente.cb_tipofatturazione+'</tipofatturazione>' +
-                '<ragionesociale>'+data.dati_utente.cb_ragionesociale+'</ragionesociale>' +
-                '<indirizzofatturazione>'+data.dati_utente.cb_indirizzofatturazione+'</indirizzofatturazione>' +
-                '<cittafatturazione>'+data.dati_utente.cb_cittafatturazione+'</cittafatturazione>' +
-                '<capfatturazione>'+data.dati_utente.cb_capfatturazione+'</capfatturazione>' +
-                '<partitaivacf>'+data.dati_utente.partitaivacf+'</partitaivacf>' +
-                '<id_opzione>'+data.id_opzione+'</id_opzione>'+
-                '</richiesta>';
-
-            var xml_gen_request_str = btoa(xml_gen_request);
-            console.log(xml_gen_request);
-
-            jQuery.get("http://bsinternational.eu/getstudente.php", {data: xml_gen_request_str},
-                function (data) {
-                    console.log(data);
-                });
-
-        }
-
+        
         jQuery("button").click(function (e) {
             e.preventDefault();
 
@@ -96,9 +53,7 @@ defined('_JEXEC') or die('Restricted access');
                             jQuery(".inputCoupongroup").removeClass('error').addClass('success');
                             jQuery("#inputCoupon").prop('disabled', true);
                             jQuery("#report").html(data.mieicorsi);
-
-                            britshConnector(data);
-
+                            
                         } else
                         {
                             jQuery("#button_conferma_codice").show();
